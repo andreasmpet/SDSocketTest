@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C13D525ED2FAEBCA42CE3E1D /* SDSocketMessageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = C13D543AE7A1F5D210F9F38B /* SDSocketMessageFactory.m */; };
+		C13D569CD51666475547CD9C /* SDSocketMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C13D571B521EDC016218226E /* SDSocketMessage.m */; };
 		CA1C213C16D80DB000BA683E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1C213B16D80DB000BA683E /* UIKit.framework */; };
 		CA1C213E16D80DB000BA683E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1C213D16D80DB000BA683E /* Foundation.framework */; };
 		CA1C214016D80DB000BA683E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1C213F16D80DB000BA683E /* CoreGraphics.framework */; };
@@ -16,13 +18,17 @@
 		CA1C214E16D80DB000BA683E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1C214D16D80DB000BA683E /* Default.png */; };
 		CA1C215016D80DB000BA683E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1C214F16D80DB000BA683E /* Default@2x.png */; };
 		CA1C215216D80DB000BA683E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1C215116D80DB000BA683E /* Default-568h@2x.png */; };
-		CA1C215516D80DB000BA683E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1C215416D80DB000BA683E /* ViewController.m */; };
-		CA1C215816D80DB000BA683E /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1C215616D80DB000BA683E /* ViewController.xib */; };
+		CA1C215516D80DB000BA683E /* SocketKeepAliveTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1C215416D80DB000BA683E /* SocketKeepAliveTestViewController.m */; };
+		CA1C215816D80DB000BA683E /* SocketKeepAliveTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1C215616D80DB000BA683E /* SocketKeepAliveTestViewController.xib */; };
 		CA1C216016D80DB100BA683E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1C215F16D80DB100BA683E /* SenTestingKit.framework */; };
 		CA1C216116D80DB100BA683E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1C213B16D80DB000BA683E /* UIKit.framework */; };
 		CA1C216216D80DB100BA683E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1C213D16D80DB000BA683E /* Foundation.framework */; };
 		CA1C216A16D80DB100BA683E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1C216816D80DB100BA683E /* InfoPlist.strings */; };
 		CA1C216D16D80DB100BA683E /* SocketTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1C216C16D80DB100BA683E /* SocketTestTests.m */; };
+		CA1C217E16D80F1300BA683E /* base64.c in Sources */ = {isa = PBXBuildFile; fileRef = CA1C217716D80F1300BA683E /* base64.c */; };
+		CA1C217F16D80F1300BA683E /* NSData+SRB64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1C217A16D80F1300BA683E /* NSData+SRB64Additions.m */; };
+		CA1C218016D80F1300BA683E /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1C217D16D80F1300BA683E /* SRWebSocket.m */; };
+		CA1C218316D8112300BA683E /* SocketConnectionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1C218216D8112300BA683E /* SocketConnectionHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +42,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C13D543AE7A1F5D210F9F38B /* SDSocketMessageFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSocketMessageFactory.m; sourceTree = "<group>"; };
+		C13D571788A4EB6357A4E358 /* SDSocketMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSocketMessage.h; sourceTree = "<group>"; };
+		C13D571B521EDC016218226E /* SDSocketMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSocketMessage.m; sourceTree = "<group>"; };
+		C13D5E16897D52054EDDE26C /* SDSocketMessageFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSocketMessageFactory.h; sourceTree = "<group>"; };
 		CA1C213816D80DB000BA683E /* SocketTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocketTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA1C213B16D80DB000BA683E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CA1C213D16D80DB000BA683E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -49,15 +59,24 @@
 		CA1C214D16D80DB000BA683E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		CA1C214F16D80DB000BA683E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		CA1C215116D80DB000BA683E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		CA1C215316D80DB000BA683E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		CA1C215416D80DB000BA683E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		CA1C215716D80DB000BA683E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		CA1C215316D80DB000BA683E /* SocketKeepAliveTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocketKeepAliveTestViewController.h; sourceTree = "<group>"; };
+		CA1C215416D80DB000BA683E /* SocketKeepAliveTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocketKeepAliveTestViewController.m; sourceTree = "<group>"; };
+		CA1C215716D80DB000BA683E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SocketKeepAliveTestViewController.xib; sourceTree = "<group>"; };
 		CA1C215E16D80DB100BA683E /* SocketTestTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SocketTestTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA1C215F16D80DB100BA683E /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		CA1C216716D80DB100BA683E /* SocketTestTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SocketTestTests-Info.plist"; sourceTree = "<group>"; };
 		CA1C216916D80DB100BA683E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CA1C216B16D80DB100BA683E /* SocketTestTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocketTestTests.h; sourceTree = "<group>"; };
 		CA1C216C16D80DB100BA683E /* SocketTestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocketTestTests.m; sourceTree = "<group>"; };
+		CA1C217716D80F1300BA683E /* base64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = base64.c; sourceTree = "<group>"; };
+		CA1C217816D80F1300BA683E /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
+		CA1C217916D80F1300BA683E /* NSData+SRB64Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SRB64Additions.h"; sourceTree = "<group>"; };
+		CA1C217A16D80F1300BA683E /* NSData+SRB64Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SRB64Additions.m"; sourceTree = "<group>"; };
+		CA1C217B16D80F1300BA683E /* SocketRocket-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SocketRocket-Prefix.pch"; sourceTree = "<group>"; };
+		CA1C217C16D80F1300BA683E /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
+		CA1C217D16D80F1300BA683E /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
+		CA1C218116D8112300BA683E /* SocketConnectionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketConnectionHandler.h; sourceTree = "<group>"; };
+		CA1C218216D8112300BA683E /* SocketConnectionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketConnectionHandler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +106,7 @@
 		CA1C212F16D80DB000BA683E = {
 			isa = PBXGroup;
 			children = (
+				CA1C217616D80F1300BA683E /* SocketRocket */,
 				CA1C214116D80DB000BA683E /* SocketTest */,
 				CA1C216516D80DB100BA683E /* SocketTestTests */,
 				CA1C213A16D80DB000BA683E /* Frameworks */,
@@ -119,10 +139,16 @@
 			children = (
 				CA1C214A16D80DB000BA683E /* AppDelegate.h */,
 				CA1C214B16D80DB000BA683E /* AppDelegate.m */,
-				CA1C215316D80DB000BA683E /* ViewController.h */,
-				CA1C215416D80DB000BA683E /* ViewController.m */,
-				CA1C215616D80DB000BA683E /* ViewController.xib */,
+				CA1C215316D80DB000BA683E /* SocketKeepAliveTestViewController.h */,
+				CA1C215416D80DB000BA683E /* SocketKeepAliveTestViewController.m */,
+				CA1C215616D80DB000BA683E /* SocketKeepAliveTestViewController.xib */,
 				CA1C214216D80DB000BA683E /* Supporting Files */,
+				CA1C218116D8112300BA683E /* SocketConnectionHandler.h */,
+				CA1C218216D8112300BA683E /* SocketConnectionHandler.m */,
+				C13D543AE7A1F5D210F9F38B /* SDSocketMessageFactory.m */,
+				C13D5E16897D52054EDDE26C /* SDSocketMessageFactory.h */,
+				C13D571B521EDC016218226E /* SDSocketMessage.m */,
+				C13D571788A4EB6357A4E358 /* SDSocketMessage.h */,
 			);
 			path = SocketTest;
 			sourceTree = "<group>";
@@ -158,6 +184,20 @@
 				CA1C216816D80DB100BA683E /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CA1C217616D80F1300BA683E /* SocketRocket */ = {
+			isa = PBXGroup;
+			children = (
+				CA1C217716D80F1300BA683E /* base64.c */,
+				CA1C217816D80F1300BA683E /* base64.h */,
+				CA1C217916D80F1300BA683E /* NSData+SRB64Additions.h */,
+				CA1C217A16D80F1300BA683E /* NSData+SRB64Additions.m */,
+				CA1C217B16D80F1300BA683E /* SocketRocket-Prefix.pch */,
+				CA1C217C16D80F1300BA683E /* SRWebSocket.h */,
+				CA1C217D16D80F1300BA683E /* SRWebSocket.m */,
+			);
+			path = SocketRocket;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,7 +275,7 @@
 				CA1C214E16D80DB000BA683E /* Default.png in Resources */,
 				CA1C215016D80DB000BA683E /* Default@2x.png in Resources */,
 				CA1C215216D80DB000BA683E /* Default-568h@2x.png in Resources */,
-				CA1C215816D80DB000BA683E /* ViewController.xib in Resources */,
+				CA1C215816D80DB000BA683E /* SocketKeepAliveTestViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,7 +312,13 @@
 			files = (
 				CA1C214816D80DB000BA683E /* main.m in Sources */,
 				CA1C214C16D80DB000BA683E /* AppDelegate.m in Sources */,
-				CA1C215516D80DB000BA683E /* ViewController.m in Sources */,
+				CA1C215516D80DB000BA683E /* SocketKeepAliveTestViewController.m in Sources */,
+				CA1C217E16D80F1300BA683E /* base64.c in Sources */,
+				CA1C217F16D80F1300BA683E /* NSData+SRB64Additions.m in Sources */,
+				CA1C218016D80F1300BA683E /* SRWebSocket.m in Sources */,
+				CA1C218316D8112300BA683E /* SocketConnectionHandler.m in Sources */,
+				C13D525ED2FAEBCA42CE3E1D /* SDSocketMessageFactory.m in Sources */,
+				C13D569CD51666475547CD9C /* SDSocketMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,12 +349,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		CA1C215616D80DB000BA683E /* ViewController.xib */ = {
+		CA1C215616D80DB000BA683E /* SocketKeepAliveTestViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				CA1C215716D80DB000BA683E /* en */,
 			);
-			name = ViewController.xib;
+			name = SocketKeepAliveTestViewController.xib;
 			sourceTree = "<group>";
 		};
 		CA1C216816D80DB100BA683E /* InfoPlist.strings */ = {
@@ -455,6 +501,7 @@
 				CA1C217216D80DB100BA683E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CA1C217316D80DB100BA683E /* Build configuration list for PBXNativeTarget "SocketTestTests" */ = {
 			isa = XCConfigurationList;
@@ -463,6 +510,7 @@
 				CA1C217516D80DB100BA683E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
