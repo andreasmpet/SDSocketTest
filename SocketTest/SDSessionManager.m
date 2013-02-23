@@ -28,6 +28,16 @@
     [self.socketConnectionHandler openWithURL:url
      startupCompleteBlock:^(BOOL success)
      {
+         // Session already started
+         if (self.sessionID != nil)
+         {
+             if (self.sessionStartupBlock)
+             {
+                 self.sessionStartupBlock(YES);
+             }
+             return;
+         }
+
          if (success)
          {
              self.sessionState = SDSessionManagerStateHandshakeStarted;

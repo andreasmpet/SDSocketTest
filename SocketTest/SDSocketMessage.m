@@ -55,12 +55,8 @@
         [jsonObject setObject:self.payload forKey:@"payload"];
     }
 
-
     NSData *data = [NSJSONSerialization dataWithJSONObject:jsonObject options:kNilOptions error:nil];
-    
-    NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-
-    return str;
+    return [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
 }
 
 
