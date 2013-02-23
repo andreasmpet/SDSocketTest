@@ -16,7 +16,7 @@
  @abstract
  Creates a Soundrop socket message based on a response from the websocket.
  */
-+ (SDSocketMessage *)createMessageFromDict:(NSDictionary *)dict;
++ (SDSocketMessage *)createMessageFromJSONString:(NSString *)jsonString;
 
 /*!
  @abstract

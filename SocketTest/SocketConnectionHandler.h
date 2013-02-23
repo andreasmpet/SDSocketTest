@@ -16,11 +16,28 @@ typedef void (^MessageReceivedBlock)(SDSocketMessage *message);
 
 @interface SocketConnectionHandler : NSObject <SRWebSocketDelegate>
 
-- (void)startWithURL:(NSURL *)webSocketURL
+/*!
+ @abstract
+ Opens a socket to the given URL.
+ Two blocks can be provided to execute code when the opening has been completed and when
+ messages have been received.
+ */
+- (void)openWithURL:(NSURL *)webSocketURL
 startupCompleteBlock:(StartupCompleteBlock)completionBlock
 messageReceivedBlock:(MessageReceivedBlock)messageReceivedBlock;
 
-- (void)sendMessage:(id)data;
+
+/*!
+ @abstract
+ Sends a message if the socket is open.
+ */
+- (void)sendMessage:(SDSocketMessage *)message;
+
+/*!
+ @abstract
+ Explicitly close the socket.
+ */
+- (void)closeSocket;
 
 /*!
  @abstract

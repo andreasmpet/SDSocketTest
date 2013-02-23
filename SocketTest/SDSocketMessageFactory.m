@@ -12,9 +12,10 @@
 
 }
 
-+ (SDSocketMessage *)createMessageFromDict:(NSDictionary *)dict
++ (SDSocketMessage *)createMessageFromJSONString:(NSString *)jsonString
 {
-    NSAssert([dict isKindOfClass:[NSDictionary class]], @"dict is not of type NSDictionary");
+
+    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:nil];
 
     return [[SDSocketMessage alloc] initWithId:[dict objectForKey:@"_id"]
                                           name:[dict objectForKey:@"name"]

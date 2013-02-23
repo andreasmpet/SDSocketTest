@@ -36,7 +36,7 @@
     return self;
 }
 
-- (void)startWithURL:(NSURL *)webSocketURL
+- (void)openWithURL:(NSURL *)webSocketURL
 startupCompleteBlock:(StartupCompleteBlock)completionBlock
 messageReceivedBlock:(MessageReceivedBlock)messageReceivedBlock
 {
@@ -59,7 +59,7 @@ messageReceivedBlock:(MessageReceivedBlock)messageReceivedBlock
 {
     if (self.socketOpen)
     {
-        [self.webSocket send:[message jsonObject]];
+        [self.webSocket send:[message jsonData]];
     }
     else
     {
@@ -73,7 +73,11 @@ messageReceivedBlock:(MessageReceivedBlock)messageReceivedBlock
 {
     NSLog(@"####### Socket Message ########\n%@", message);
 
-    SDSocketMessage *sdMessage = [SDSocketMessageFactory createMessageFromDict:message];
+    if (self.messageReceivedBlock)
+    {
+        SDSocketMessage *sdMessage = [SDSocketMessageFactory createMessageFromJSONString:message];
+        self.messageReceivedBlock(sdMessage);
+    }
 }
 
 - (void)webSocketDidOpen:(SRWebSocket *)webSocket
@@ -96,16 +100,15 @@ messageReceivedBlock:(MessageReceivedBlock)messageReceivedBlock
     BOOL allowedToRetry = self.retryOnFailure && self.currentRetryCount < kDefaultMaxErrorRetryCount;
     if (allowedToRetry)
     {
-        [self startWithURL:self.connectionURL
-      startupCompleteBlock:self.startupCompletionBlock
-      messageReceivedBlock:self.messageReceivedBlock];
+        [self openWithURL:self.connectionURL
+     startupCompleteBlock:self.startupCompletionBlock
+     messageReceivedBlock:self.messageReceivedBlock];
     }
     else
     {
         NSLog(@"Socket reached max retry count. Will stop retrying now...");
         self.startupCompletionBlock(NO);
-        self.socketOpen = NO;
-        self.webSocket = nil;
+        [self resetSocket];
     }
 
     self.currentRetryCount++;
@@ -114,8 +117,7 @@ messageReceivedBlock:(MessageReceivedBlock)messageReceivedBlock
 - (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean
 {
     NSLog(@"####### Socket Closed ########\n%@", reason);
-    self.socketOpen = NO;
-    self.webSocket = nil;
+    [self resetSocket];
 }
 
 - (void)closeSocket
@@ -123,10 +125,17 @@ messageReceivedBlock:(MessageReceivedBlock)messageReceivedBlock
     [self.webSocket close];
 }
 
+- (void)resetSocket
+{
+    self.socketOpen = NO;
+    self.webSocket = nil;
+}
+
 - (SRWebSocket *)createSocketWithURL:(NSURL *)url
 {
-    // I like to hide away construction like this in case it becomes more complex with time.
-     return [[SRWebSocket alloc] initWithURL:url];
+    SRWebSocket *socket = [[SRWebSocket alloc] initWithURL:url];
+    socket.delegate = self;
+    return socket;
 }
 
 @end

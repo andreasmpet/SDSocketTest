@@ -16,7 +16,7 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.viewController = [[SocketKeepAliveTestViewController alloc] initWithNibName:@"ViewController" bundle:nil];
+    self.viewController = [[SocketKeepAliveTestViewController alloc] initWithNibName:@"SocketKeepAliveTestViewController" bundle:nil];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;

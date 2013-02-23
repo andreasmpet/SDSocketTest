@@ -29,6 +29,10 @@
 		CA1C217F16D80F1300BA683E /* NSData+SRB64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1C217A16D80F1300BA683E /* NSData+SRB64Additions.m */; };
 		CA1C218016D80F1300BA683E /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1C217D16D80F1300BA683E /* SRWebSocket.m */; };
 		CA1C218316D8112300BA683E /* SocketConnectionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1C218216D8112300BA683E /* SocketConnectionHandler.m */; };
+		CA1C218516D82AA600BA683E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1C218416D82AA600BA683E /* Security.framework */; };
+		CA1C218716D82AC900BA683E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1C218616D82AC900BA683E /* CFNetwork.framework */; };
+		CA1C218D16D82E8000BA683E /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1C218C16D82E8000BA683E /* libicucore.dylib */; };
+		CA1C218F16D82EE300BA683E /* libicucore.A.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1C218E16D82EE300BA683E /* libicucore.A.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +81,10 @@
 		CA1C217D16D80F1300BA683E /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
 		CA1C218116D8112300BA683E /* SocketConnectionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketConnectionHandler.h; sourceTree = "<group>"; };
 		CA1C218216D8112300BA683E /* SocketConnectionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketConnectionHandler.m; sourceTree = "<group>"; };
+		CA1C218416D82AA600BA683E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		CA1C218616D82AC900BA683E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		CA1C218C16D82E8000BA683E /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		CA1C218E16D82EE300BA683E /* libicucore.A.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.A.dylib; path = usr/lib/libicucore.A.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +95,10 @@
 				CA1C213C16D80DB000BA683E /* UIKit.framework in Frameworks */,
 				CA1C213E16D80DB000BA683E /* Foundation.framework in Frameworks */,
 				CA1C214016D80DB000BA683E /* CoreGraphics.framework in Frameworks */,
+				CA1C218516D82AA600BA683E /* Security.framework in Frameworks */,
+				CA1C218716D82AC900BA683E /* CFNetwork.framework in Frameworks */,
+				CA1C218D16D82E8000BA683E /* libicucore.dylib in Frameworks */,
+				CA1C218F16D82EE300BA683E /* libicucore.A.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,6 +138,10 @@
 		CA1C213A16D80DB000BA683E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CA1C218E16D82EE300BA683E /* libicucore.A.dylib */,
+				CA1C218C16D82E8000BA683E /* libicucore.dylib */,
+				CA1C218616D82AC900BA683E /* CFNetwork.framework */,
+				CA1C218416D82AA600BA683E /* Security.framework */,
 				CA1C213B16D80DB000BA683E /* UIKit.framework */,
 				CA1C213D16D80DB000BA683E /* Foundation.framework */,
 				CA1C213F16D80DB000BA683E /* CoreGraphics.framework */,
@@ -432,6 +448,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SocketTest/SocketTest-Prefix.pch";
 				INFOPLIST_FILE = "SocketTest/SocketTest-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -443,6 +463,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SocketTest/SocketTest-Prefix.pch";
 				INFOPLIST_FILE = "SocketTest/SocketTest-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

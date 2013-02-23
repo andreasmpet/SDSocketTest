@@ -8,6 +8,7 @@
 
 #import "SocketKeepAliveTestViewController.h"
 #import "SocketConnectionHandler.h"
+#import "SDSocketMessageFactory.h"
 
 #define kSocketConnectionURLString @"ws://wocket.soundrop.fm/websocket"
 
@@ -24,17 +25,20 @@
     [super viewDidLoad];
 
     self.socketConnectionHandler = [SocketConnectionHandler new];
-    [self.socketConnectionHandler startWithURL:[NSURL URLWithString:kSocketConnectionURLString]
-                          startupCompleteBlock:^(BOOL success)
-    {
-        // Once the connection starts up, lets send an init message to do the handshake
-        [self.socketConnectionHandler sendMessage:<#(id)data#>];
-    }
-    messageReceivedBlock:^(SDSocketMessage *message)
-    {
-        // Do some stuff with your received message. Either parse it or formulate a response depending on the message.
-        // Preferably delegate that task to some kind of message handling center.
-    }];
+    [self.socketConnectionHandler openWithURL:[NSURL URLWithString:kSocketConnectionURLString]
+                         startupCompleteBlock:^(BOOL success)
+                         {
+                             if (success)
+                             {
+                                 // Once the connection starts up, lets send an init message to do the handshake
+                                 [self.socketConnectionHandler sendMessage:[SDSocketMessageFactory createInitMessage]];
+                             }
+                         }
+                         messageReceivedBlock:^(SDSocketMessage *message)
+                         {
+                             // Do some stuff with your received message. Either parse it or formulate a response depending on the message.
+                             // Preferably delegate that task to some kind of message handling center.
+                         }];
 }
 
 - (void)didReceiveMemoryWarning
