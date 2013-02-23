@@ -14,7 +14,7 @@
 @interface SocketKeepAliveTestViewController ()
 
 @property (strong, nonatomic) SDSessionManager *sessionManager;
-
+@property (weak, nonatomic) IBOutlet UILabel *sessionIdLabel;
 @end
 
 @implementation SocketKeepAliveTestViewController
@@ -24,9 +24,10 @@
     [super viewDidLoad];
 
     self.sessionManager = [SDSessionManager new];
+    self.sessionIdLabel.text = @"Starting session...";
     [self.sessionManager startSessionWithURL:[NSURL URLWithString:kSocketConnectionURLString] onComplete:^(BOOL success)
     {
-
+        self.sessionIdLabel.text = self.sessionManager.sessionID;
     }];
 }
 

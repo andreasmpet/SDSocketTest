@@ -121,8 +121,7 @@ startupCompleteBlock:(StartupCompleteBlock)completionBlock
     if (allowedToRetry)
     {
         [self openWithURL:self.connectionURL
-     startupCompleteBlock:self.startupCompletionBlock
-     messageReceivedBlock:self.messageReceivedBlock];
+     startupCompleteBlock:self.startupCompletionBlock];
     }
     else
     {
