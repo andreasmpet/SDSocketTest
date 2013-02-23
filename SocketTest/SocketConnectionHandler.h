@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "SRWebSocket.h"
+#import "BlockDefinitions.h"
 
 @class SDSocketMessage;
 
-typedef void (^StartupCompleteBlock)(BOOL success);
-typedef void (^MessageReceivedBlock)(SDSocketMessage *message);
-
+/*!
+ @abstract
+ This class creates a facade to the SocketRocket socket object to make it simpler to use. 
+ */
 @interface SocketConnectionHandler : NSObject <SRWebSocketDelegate>
 
 /*!
@@ -23,15 +25,14 @@ typedef void (^MessageReceivedBlock)(SDSocketMessage *message);
  messages have been received.
  */
 - (void)openWithURL:(NSURL *)webSocketURL
-startupCompleteBlock:(StartupCompleteBlock)completionBlock
-messageReceivedBlock:(MessageReceivedBlock)messageReceivedBlock;
-
+startupCompleteBlock:(StartupCompleteBlock)completionBlock;
 
 /*!
  @abstract
  Sends a message if the socket is open.
+ Response block is called when a response for the sent message is received.
  */
-- (void)sendMessage:(SDSocketMessage *)message;
+- (void)sendMessage:(SDSocketMessage *)message onResponse:(MessageReceivedBlock)responseBlock;
 
 /*!
  @abstract
@@ -66,5 +67,8 @@ messageReceivedBlock:(MessageReceivedBlock)messageReceivedBlock;
  returns whether or not the handler currently has a socket open.
  */
 @property (assign, readonly, nonatomic, getter=isSocketOpen) BOOL socketOpen;
+
+
+
 
 @end

@@ -33,6 +33,7 @@
 		CA1C218716D82AC900BA683E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1C218616D82AC900BA683E /* CFNetwork.framework */; };
 		CA1C218D16D82E8000BA683E /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1C218C16D82E8000BA683E /* libicucore.dylib */; };
 		CA1C218F16D82EE300BA683E /* libicucore.A.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1C218E16D82EE300BA683E /* libicucore.A.dylib */; };
+		CA1C219216D8FC7200BA683E /* SDSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1C219116D8FC7200BA683E /* SDSessionManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,9 @@
 		CA1C218616D82AC900BA683E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		CA1C218C16D82E8000BA683E /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		CA1C218E16D82EE300BA683E /* libicucore.A.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.A.dylib; path = usr/lib/libicucore.A.dylib; sourceTree = SDKROOT; };
+		CA1C219016D8FC7100BA683E /* SDSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSessionManager.h; sourceTree = "<group>"; };
+		CA1C219116D8FC7200BA683E /* SDSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSessionManager.m; sourceTree = "<group>"; };
+		CA1C219316D8FF8100BA683E /* BlockDefinitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockDefinitions.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +169,9 @@
 				C13D5E16897D52054EDDE26C /* SDSocketMessageFactory.h */,
 				C13D571B521EDC016218226E /* SDSocketMessage.m */,
 				C13D571788A4EB6357A4E358 /* SDSocketMessage.h */,
+				CA1C219016D8FC7100BA683E /* SDSessionManager.h */,
+				CA1C219116D8FC7200BA683E /* SDSessionManager.m */,
+				CA1C219316D8FF8100BA683E /* BlockDefinitions.h */,
 			);
 			path = SocketTest;
 			sourceTree = "<group>";
@@ -335,6 +342,7 @@
 				CA1C218316D8112300BA683E /* SocketConnectionHandler.m in Sources */,
 				C13D525ED2FAEBCA42CE3E1D /* SDSocketMessageFactory.m in Sources */,
 				C13D569CD51666475547CD9C /* SDSocketMessage.m in Sources */,
+				CA1C219216D8FC7200BA683E /* SDSessionManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,4 +24,8 @@
  */
 + (SDSocketMessage *)createInitMessage;
 
+
++ (SDSocketMessage *)createCreateSessionMessage;
+
++ (SDSocketMessage *)createEmptyGetMessage;
 @end

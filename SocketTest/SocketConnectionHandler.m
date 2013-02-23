@@ -19,7 +19,8 @@
 @property (assign, readwrite, nonatomic) BOOL socketOpen;
 @property (assign, readwrite, nonatomic) NSUInteger currentRetryCount;
 @property (copy, nonatomic) StartupCompleteBlock startupCompletionBlock;
-@property (copy, nonatomic) MessageReceivedBlock messageReceivedBlock;
+
+@property (strong, nonatomic) NSMutableDictionary *messageReceivedBlocks;
 
 @end
 
@@ -31,6 +32,7 @@
     {
         self.retryOnFailure = NO;
         self.maxRetryCount = kDefaultMaxErrorRetryCount;
+        self.messageReceivedBlocks = [NSMutableDictionary new];
     }
 
     return self;
@@ -38,7 +40,6 @@
 
 - (void)openWithURL:(NSURL *)webSocketURL
 startupCompleteBlock:(StartupCompleteBlock)completionBlock
-messageReceivedBlock:(MessageReceivedBlock)messageReceivedBlock
 {
     NSAssert(webSocketURL, @"startWithURL: requires a non-nil URL");
     self.connectionURL = webSocketURL;
@@ -46,7 +47,6 @@ messageReceivedBlock:(MessageReceivedBlock)messageReceivedBlock
     // Could probably in the future have blocks for failure and closure.
     // This should do for a POC
     self.startupCompletionBlock = completionBlock;
-    self.messageReceivedBlock = messageReceivedBlock;
 
     // Close any old running socket
     [self.webSocket close];
@@ -55,10 +55,11 @@ messageReceivedBlock:(MessageReceivedBlock)messageReceivedBlock
     [self.webSocket open];
 }
 
-- (void)sendMessage:(SDSocketMessage *)message
+- (void)sendMessage:(SDSocketMessage *)message onResponse:(MessageReceivedBlock)responseBlock
 {
     if (self.socketOpen)
     {
+        [self storeResponseBlock:responseBlock forMessage:message];
         [self.webSocket send:[message jsonData]];
     }
     else
@@ -67,18 +68,37 @@ messageReceivedBlock:(MessageReceivedBlock)messageReceivedBlock
     }
 }
 
+- (void)storeResponseBlock:(MessageReceivedBlock)responseBlock forMessage:(SDSocketMessage *)message
+{
+    [self.messageReceivedBlocks setObject:responseBlock forKey:message.identifier];
+}
+
+- (void)clearCompletionBlockForMessage:(SDSocketMessage *)message
+{
+    [self.messageReceivedBlocks removeObjectForKey:message.identifier];
+}
+
+- (MessageReceivedBlock)findBlockToCallForMessage:(SDSocketMessage *)message
+{
+    return [self.messageReceivedBlocks objectForKey:message.identifier];
+}
+
 #pragma mark - SRWebSocketDelegate
 
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message
 {
     NSLog(@"####### Socket Message ########\n%@", message);
 
-    if (self.messageReceivedBlock)
+    SDSocketMessage *sdMessage = [SDSocketMessageFactory createMessageFromJSONString:message];
+    MessageReceivedBlock blockToCallForMessage = [self findBlockToCallForMessage:sdMessage];
+    if (blockToCallForMessage)
     {
-        SDSocketMessage *sdMessage = [SDSocketMessageFactory createMessageFromJSONString:message];
-        self.messageReceivedBlock(sdMessage);
+        blockToCallForMessage(sdMessage);
+        [self clearCompletionBlockForMessage:sdMessage];
     }
 }
+
+
 
 - (void)webSocketDidOpen:(SRWebSocket *)webSocket
 {
