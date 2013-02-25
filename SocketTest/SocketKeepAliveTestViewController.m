@@ -9,12 +9,17 @@
 #import "SocketKeepAliveTestViewController.h"
 #import "SDSessionManager.h"
 
+#import <AVFoundation/AVFoundation.h>
+
 #define kSocketConnectionURLString @"ws://wocket.soundrop.fm/websocket"
 
 @interface SocketKeepAliveTestViewController ()
 
 @property (strong, nonatomic) SDSessionManager *sessionManager;
 @property (weak, nonatomic) IBOutlet UILabel *sessionIdLabel;
+
+//@property (strong, nonatomic) AVAudioPlayer *audioPlayer;
+
 @end
 
 @implementation SocketKeepAliveTestViewController
@@ -25,10 +30,13 @@
 
     self.sessionManager = [SDSessionManager new];
     self.sessionIdLabel.text = @"Starting session...";
-    [self.sessionManager startSessionWithURL:[NSURL URLWithString:kSocketConnectionURLString] onComplete:^(BOOL success)
+    [self.sessionManager startSessionWithURL:[NSURL URLWithString:kSocketConnectionURLString]
+                                  onComplete:^(BOOL success)
     {
         self.sessionIdLabel.text = self.sessionManager.sessionID;
     }];
+    
+//    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
 }
 
 - (void)didReceiveMemoryWarning

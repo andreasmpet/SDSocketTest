@@ -9,6 +9,9 @@
 #import "AppDelegate.h"
 
 #import "SocketKeepAliveTestViewController.h"
+#import "SocketConnectionHandler.h"
+
+#define kPingTimeout 600
 
 @implementation AppDelegate
 
@@ -19,6 +22,13 @@
     self.viewController = [[SocketKeepAliveTestViewController alloc] initWithNibName:@"SocketKeepAliveTestViewController" bundle:nil];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
+    
+    BOOL scheduled = [application setKeepAliveTimeout:kPingTimeout
+                                              handler:^{ // Schedule processing after some time interval
+        
+                                                  [[NSNotificationCenter defaultCenter]postNotificationName:SocketConnectionHandlerShouldPerformPingNotification object:nil];
+                                              }];
+                      
     return YES;
 }
 

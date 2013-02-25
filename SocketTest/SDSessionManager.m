@@ -88,6 +88,14 @@
              {
                  // Call back to the startup block to say our session has been created successfully
                  self.sessionStartupBlock(YES);
+                 
+                 
+                 // TEMP TEST STUFF!!!!!
+                 // Just test to receive info from a space
+                 [self.socketConnectionHandler sendMessage:[SDSocketMessageFactory createFakeSpaceMessage]
+                                                onResponse:^(SDSocketMessage *message) {
+                                                    NSLog(@"%@",message.payload);
+                 }];
              }
          }
          else

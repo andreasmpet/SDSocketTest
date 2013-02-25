@@ -34,6 +34,7 @@
 		CA1C218D16D82E8000BA683E /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1C218C16D82E8000BA683E /* libicucore.dylib */; };
 		CA1C218F16D82EE300BA683E /* libicucore.A.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1C218E16D82EE300BA683E /* libicucore.A.dylib */; };
 		CA1C219216D8FC7200BA683E /* SDSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1C219116D8FC7200BA683E /* SDSessionManager.m */; };
+		CA1C219516D915B800BA683E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1C219416D915B800BA683E /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		CA1C219016D8FC7100BA683E /* SDSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSessionManager.h; sourceTree = "<group>"; };
 		CA1C219116D8FC7200BA683E /* SDSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSessionManager.m; sourceTree = "<group>"; };
 		CA1C219316D8FF8100BA683E /* BlockDefinitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockDefinitions.h; sourceTree = "<group>"; };
+		CA1C219416D915B800BA683E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				CA1C218716D82AC900BA683E /* CFNetwork.framework in Frameworks */,
 				CA1C218D16D82E8000BA683E /* libicucore.dylib in Frameworks */,
 				CA1C218F16D82EE300BA683E /* libicucore.A.dylib in Frameworks */,
+				CA1C219516D915B800BA683E /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,6 +145,7 @@
 		CA1C213A16D80DB000BA683E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CA1C219416D915B800BA683E /* AVFoundation.framework */,
 				CA1C218E16D82EE300BA683E /* libicucore.A.dylib */,
 				CA1C218C16D82E8000BA683E /* libicucore.dylib */,
 				CA1C218616D82AC900BA683E /* CFNetwork.framework */,
@@ -456,6 +460,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SocketTest/SocketTest-Prefix.pch";
 				INFOPLIST_FILE = "SocketTest/SocketTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -471,6 +476,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SocketTest/SocketTest-Prefix.pch";
 				INFOPLIST_FILE = "SocketTest/SocketTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",

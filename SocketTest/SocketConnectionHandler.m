@@ -12,6 +12,9 @@
 
 #define kDefaultMaxErrorRetryCount 10
 
+
+NSString *const SocketConnectionHandlerShouldPerformPingNotification = @"SocketConnectionHandlerShouldPerformPingNotification";
+
 @interface SocketConnectionHandler ()
 
 @property (strong, nonatomic) SRWebSocket *webSocket;
@@ -33,6 +36,11 @@
         self.retryOnFailure = NO;
         self.maxRetryCount = kDefaultMaxErrorRetryCount;
         self.messageReceivedBlocks = [NSMutableDictionary new];
+        
+        [[NSNotificationCenter defaultCenter]addObserver:self
+                                                selector:@selector(performPing)
+                                                    name:SocketConnectionHandlerShouldPerformPingNotification
+                                                  object:nil];
     }
 
     return self;
@@ -81,6 +89,11 @@ startupCompleteBlock:(StartupCompleteBlock)completionBlock
 - (MessageReceivedBlock)findBlockToCallForMessage:(SDSocketMessage *)message
 {
     return [self.messageReceivedBlocks objectForKey:message.identifier];
+}
+
+- (void)performPing
+{
+    [self.webSocket sendPing];
 }
 
 #pragma mark - SRWebSocketDelegate

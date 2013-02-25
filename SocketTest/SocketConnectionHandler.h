@@ -12,6 +12,10 @@
 
 @class SDSocketMessage;
 
+// SocketConnectionHandler listens to this notification to perform
+// a keep-alive ping towards the server.
+extern NSString *const SocketConnectionHandlerShouldPerformPingNotification;
+
 /*!
  @abstract
  This class creates a facade to the SocketRocket socket object to make it simpler to use. 

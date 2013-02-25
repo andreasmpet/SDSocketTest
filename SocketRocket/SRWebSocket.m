@@ -550,6 +550,24 @@ static __strong NSData *CRLFCRLF;
     [self _readHTTPHeader];
 }
 
+void writeStreamCallBack (
+                 CFWriteStreamRef stream,
+                 CFStreamEventType eventType,
+                 void *clientCallBackInfo)
+{
+    SRWebSocket* webSocket = (__bridge SRWebSocket*)clientCallBackInfo;
+    [webSocket stream:(__bridge NSStream *)(stream) handleEvent:(NSStreamEvent)eventType];
+}
+
+void readStreamCallBack (
+                          CFReadStreamRef stream,
+                          CFStreamEventType eventType,
+                          void *clientCallBackInfo)
+{
+    SRWebSocket* webSocket = (__bridge SRWebSocket*)clientCallBackInfo;
+    [webSocket stream:(__bridge NSStream *)(stream) handleEvent:(NSStreamEvent)eventType];
+}
+
 - (void)_initializeStreams;
 {
     NSInteger port = _url.port.integerValue;
@@ -567,9 +585,30 @@ static __strong NSData *CRLFCRLF;
     
     CFStreamCreatePairWithSocketToHost(NULL, (__bridge CFStringRef)host, port, &readStream, &writeStream);
     
+    // Setup connections to be VOIP connections
+    CFReadStreamSetProperty(readStream, kCFStreamNetworkServiceType, kCFStreamNetworkServiceTypeVoIP);
+    CFWriteStreamSetProperty(writeStream, kCFStreamNetworkServiceType, kCFStreamNetworkServiceTypeVoIP);
+    
+    int nFlags = kCFStreamEventOpenCompleted |
+                 kCFStreamEventHasBytesAvailable |
+                 kCFStreamEventCanAcceptBytes |
+                 kCFStreamEventErrorOccurred |
+                 kCFStreamEventEndEncountered;
+    
+    CFStreamClientContext context;
+    context.info = (__bridge void *)(self);
+    context.version = 0;
+    context.release = NULL;
+    context.retain = NULL;
+    context.copyDescription = NULL;
+    
+    CFReadStreamSetClient(readStream, nFlags, readStreamCallBack, &context);
+    CFWriteStreamSetClient(writeStream, nFlags, writeStreamCallBack, &context);
+    
     _outputStream = CFBridgingRelease(writeStream);
     _inputStream = CFBridgingRelease(readStream);
     
+
     
     if (_secure) {
         NSMutableDictionary *SSLOptions = [[NSMutableDictionary alloc] init];
@@ -728,6 +767,14 @@ static __strong NSData *CRLFCRLF;
         } else {
             assert(NO);
         }
+    });
+}
+
+- (void)sendPing
+{
+    NSAssert(self.readyState != SR_CONNECTING, @"Invalid State: Cannot call send: until connection is open");
+    dispatch_async(_workQueue, ^{
+        [self _sendFrameWithOpcode:SROpCodePing data:[NSData data]];
     });
 }
 

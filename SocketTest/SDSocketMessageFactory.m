@@ -43,6 +43,13 @@ static NSUInteger sCurrentMessageId = 0;
     return [self createMessageFromJSONString:copyPasta];
 }
 
++ (SDSocketMessage *)createFakeSpaceMessage
+{
+    NSString *copyPasta = @"{\"_id\":\"2\",\"to\":\"/spaces/VtGBUu7YFGlyylmt\",\"name\":\".get\",\"payload\":{}}";
+    return [self createMessageFromJSONString:copyPasta];
+}
+
+
 
 + (SDSocketMessage *)createEmptyGetMessage
 {
@@ -60,6 +67,5 @@ static NSUInteger sCurrentMessageId = 0;
     sCurrentMessageId++;
     return msgId;
 }
-
 
 @end
